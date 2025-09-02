@@ -15,9 +15,9 @@ def register(client):
             # Временный файл для скачивания
             temp_file = "/data/data/com.termux/files/home/sancho-tool/temp_media.mp4"
 
-            # yt-dlp скачивает видео
+            # yt-dlp скачивает видео (работает и для YouTube, и для TikTok)
             process = subprocess.run(
-                ["yt-dlp", "-o", temp_file, url],
+                ["yt-dlp", "-f", "best", "-o", temp_file, url],
                 capture_output=True,
                 text=True
             )
@@ -28,7 +28,7 @@ def register(client):
 
             # Отправляем видео в чат
             await client.send_file(event.chat_id, temp_file, caption="✅ Видео готово!")
-            
+
             # Удаляем временный файл
             os.remove(temp_file)
             await event.delete()
