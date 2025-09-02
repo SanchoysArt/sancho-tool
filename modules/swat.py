@@ -18,9 +18,9 @@ class SwatModule:
             self.enabled = not self.enabled
             
             if self.enabled:
-                await event.edit("🤍 **Режим swat включен** 🤍")
+                await event.edit("🤍 **Режим ebal включен** 🤍")
             else:
-                await event.edit("❌ **Режим swat выключен**")
+                await event.edit("❌ **Режим ebal выключен**")
         
         @self.client.on(events.NewMessage(pattern=r'\.swat ', outgoing=True))
         async def swat_text_handler(event):

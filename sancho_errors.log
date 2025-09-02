@@ -3097,3 +3097,6 @@ Traceback (most recent call last):
 AttributeError: 'NoneType' object has no attribute 'bot'
 Error loading module respond.py: register() missing 1 required positional argument: 'owner_id'
 Error loading module respond.py: register() missing 1 required positional argument: 'owner_id'
+Ошибка отправки help image: RPCError 400: TOPIC_CLOSED (caused by SendMediaRequest)
+Ошибка отправки help image: RPCError 400: TOPIC_CLOSED (caused by SendMediaRequest)
+Ошибка отправки help image: RPCError 400: TOPIC_CLOSED (caused by SendMediaRequest)
