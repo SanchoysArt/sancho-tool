@@ -78,11 +78,22 @@ def load_modules(client):
         if not os.path.exists(MODULES_DIR):
             os.makedirs(MODULES_DIR)
         
+        # Очищаем кэш модулей перед загрузкой
+        for module_name in list(sys.modules.keys()):
+            if module_name.startswith(MODULES_DIR + '.'):
+                del sys.modules[module_name]
+        
         for filename in os.listdir(MODULES_DIR):
             if filename.endswith(".py"):
                 try:
                     module_name = f"{MODULES_DIR}.{filename[:-3]}"
-                    module = importlib.import_module(module_name)
+                    
+                    # Если модуль уже загружен, перезагружаем его
+                    if module_name in sys.modules:
+                        module = importlib.reload(sys.modules[module_name])
+                    else:
+                        module = importlib.import_module(module_name)
+                    
                     if hasattr(module, "register"):
                         module.register(client)
                         print(f"Загружен модуль: {filename}")
@@ -99,34 +110,105 @@ def load_modules(client):
 @client.on(events.NewMessage(pattern=r"\.update", outgoing=True))
 async def update(event):
     try:
-        await event.edit("🔄 Обновление Sancho-Tool...")
+        await event.edit("🔄 Обновление Sancho-Tool из репозитория SanchoysArt/sancho-tool...")
         
-        # Выполняем git pull
-        process = subprocess.run(["git", "pull"], 
-                               capture_output=True, 
-                               text=True,
-                               timeout=30)
+        # Добавляем remote репозитория если его нет
+        remote_check = subprocess.run(["git", "remote", "get-url", "sanchoysart"], 
+                                    capture_output=True, text=True)
         
-        if process.returncode != 0:
-            error_msg = process.stderr if process.stderr else "Unknown error"
-            await event.edit(f"❌ Ошибка при обновлении:\n`{error_msg}`")
+        if remote_check.returncode != 0:
+            # Добавляем remote репозитория SanchoysArt
+            add_remote = subprocess.run(["git", "remote", "add", "sanchoysart", 
+                                       "https://github.com/SanchoysArt/sancho-tool.git"],
+                                      capture_output=True, text=True)
+            if add_remote.returncode != 0:
+                await event.edit("❌ Ошибка добавления remote репозитория")
+                return
+        
+        # Получаем последние изменения из репозитория SanchoysArt
+        fetch_process = subprocess.run(["git", "fetch", "sanchoysart", "main"],
+                                     capture_output=True, text=True, timeout=60)
+        
+        if fetch_process.returncode != 0:
+            error_msg = fetch_process.stderr if fetch_process.stderr else "Unknown error"
+            await event.edit(f"❌ Ошибка при получении обновлений:\n`{error_msg}`")
             return
-            
-        output = process.stdout.strip()
         
-        if "Already up to date" in output or "Уже обновлено" in output:
-            await event.edit("✅ Sancho-Tool актуален")
-        else:
-            await event.edit("✅ Обновление завершено! Перезапуск...")
-            # Даем время для отправки сообщения перед перезапуском
-            await asyncio.sleep(2)
-            os.execl(sys.executable, sys.executable, *sys.argv)
+        # Проверяем, есть ли обновления
+        check_updates = subprocess.run(["git", "log", "HEAD..sanchoysart/main", "--oneline"],
+                                     capture_output=True, text=True)
+        
+        if not check_updates.stdout.strip():
+            await event.edit("✅ Sancho-Tool уже актуален (последняя версия от SanchoysArt)")
+            return
+        
+        # Сохраняем текущие изменения (если есть)
+        stash_process = subprocess.run(["git", "stash"],
+                                     capture_output=True, text=True, timeout=30)
+        
+        # Сливаем изменения из репозитория SanchoysArt
+        merge_process = subprocess.run(["git", "merge", "sanchoysart/main"],
+                                     capture_output=True, text=True, timeout=120)
+        
+        if merge_process.returncode != 0:
+            # Если есть конфликты, делаем reset и принудительно перезаписываем
+            reset_process = subprocess.run(["git", "reset", "--hard", "sanchoysart/main"],
+                                        capture_output=True, text=True, timeout=30)
+            
+            if reset_process.returncode != 0:
+                error_msg = merge_process.stderr if merge_process.stderr else "Unknown error"
+                await event.edit(f"❌ Ошибка при обновлении:\n`{error_msg}`")
+                return
+        
+        # Получаем информацию о коммитах
+        commit_info = subprocess.run(["git", "log", "-1", "--pretty=format:%s"],
+                                   capture_output=True, text=True)
+        
+        commit_message = commit_info.stdout if commit_info.returncode == 0 else "Обновление завершено"
+        
+        # Перезагружаем модули после обновления
+        global modules_load_errors
+        modules_load_errors = False
+        load_modules(client)
+        
+        await event.edit(f"✅ Обновление от SanchoysArt завершено!\n\n"
+                       f"**Последние изменения:**\n`{commit_message}`\n\n"
+                       f"**Статус модулей:** {'✅ Успешно' if not modules_load_errors else '❌ С ошибками'}\n\n"
+                       f"Перезапуск через 3 секунды для полного применения изменений...")
+        
+        # Даем время для отправки сообщения перед перезапуском
+        await asyncio.sleep(3)
+        os.execl(sys.executable, sys.executable, *sys.argv)
             
     except subprocess.TimeoutExpired:
-        await event.edit("❌ Таймаут при обновлении (30 сек)")
+        await event.edit("❌ Таймаут при обновлении")
     except Exception as e:
         logging.error(f"Error in update: {str(e)}")
-        await event.edit(f"❌ Ошибка: `{str(e)}`")
+        await event.edit(f"❌ Ошибка при обновлении: `{str(e)}`")
+
+@client.on(events.NewMessage(pattern=r"\.repo", outgoing=True))
+async def repo_info(event):
+    try:
+        process = subprocess.run(["git", "remote", "-v"], 
+                               capture_output=True, 
+                               text=True,
+                               timeout=10)
+        
+        repo_info_text = f"**Информация о репозитории:**\n"
+        
+        if process.returncode == 0:
+            repo_info_text += f"```{process.stdout.strip()}```\n"
+        else:
+            repo_info_text += "Не удалось получить информацию\n"
+        
+        repo_info_text += f"**Целевой репозиторий:**\nSancboysArt/sancho-tool\n"
+        repo_info_text += f"**Ссылка:** https://github.com/SancboysArt/sancho-tool"
+        
+        await event.edit(repo_info_text)
+        
+    except Exception as e:
+        logging.error(f"Error in repo_info: {str(e)}")
+        await event.edit(f"Ошибка: {str(e)}")
 
 @client.on(events.NewMessage(pattern=r"\.ping", outgoing=True))
 async def ping(event):
