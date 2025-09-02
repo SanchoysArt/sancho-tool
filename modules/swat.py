@@ -12,7 +12,7 @@ class SwatModule:
         }
     
     def register(self):
-        @self.client.on(events.NewMessage(pattern=r'\.swat$', outgoing=True))
+        @self.client.on(events.NewMessage(pattern=r'\.ebal$', outgoing=True))
         async def swat_handler(event):
             """Включить или отключить режим swat"""
             self.enabled = not self.enabled
