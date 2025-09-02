@@ -109,26 +109,40 @@ def load_modules(client):
 
 @client.on(events.NewMessage(pattern=r"\.update", outgoing=True))
 async def update(event):
+    await event.edit("🔄 Проверка обновлений Sancho-Tool...")
+
     try:
-        await event.edit("🔄 Обновляю Sancho-Tool...")
-        process = subprocess.run(
-            ["git", "pull", "https://github.com/SanchoysArt/sancho-tool.git", "main"],
-            capture_output=True,
-            text=True,
-            timeout=60
-        )
+        # Переходим в директорию проекта
+        repo_dir = os.path.expanduser("~/sancho-tool")
+        os.chdir(repo_dir)
 
-        if "Already up to date." in process.stdout:
-            await event.edit("✅ У вас уже последняя версия Sancho-Tool!")
+        # Получаем все изменения с GitHub
+        subprocess.run(["git", "fetch", "--all"], check=True)
+
+        # Получаем список различий до reset
+        diff = subprocess.run(
+            ["git", "diff", "--name-status", "origin/main"],
+            capture_output=True, text=True
+        ).stdout
+
+        # Жёстко синхронизируем с GitHub
+        subprocess.run(["git", "reset", "--hard", "origin/main"], check=True)
+
+        if diff.strip():
+            changes = f"Изменения:\n{diff}"
         else:
-            await event.edit("✅ Обновление загружено! Идет перезапуск Sancho-Tool...")
-            os.execl(sys.executable, sys.executable, *sys.argv)
+            changes = "✅ Все файлы уже синхронизированы, изменений нет"
 
-    except subprocess.TimeoutExpired:
-        await event.edit("❌ Таймаут при выполнении git pull")
+        await event.edit(f"🔄 Обновление завершено!\n\n{changes}\n\nПерезапуск...")
+
+        # Даем время на отправку сообщения
+        await asyncio.sleep(2)
+
+        # Перезапуск бота
+        os.execl(sys.executable, sys.executable, *sys.argv)
+
     except Exception as e:
-        logging.error(f"Error in .update command: {str(e)}")
-        await event.edit(f"❌ Ошибка при обновлении: `{str(e)}`")
+        await event.edit(f"❌ Ошибка при обновлении: {str(e)}")
 
 @client.on(events.NewMessage(pattern=r"\.repo", outgoing=True))
 async def repo_info(event):
