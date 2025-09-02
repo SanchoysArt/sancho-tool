@@ -99,16 +99,34 @@ def load_modules(client):
 @client.on(events.NewMessage(pattern=r"\.update", outgoing=True))
 async def update(event):
     try:
-        await event.edit("Обновление Sancho-Tool...")
-        process = subprocess.run(["git", "pull"], capture_output=True, text=True)   
-        if "Already up to date." in process.stdout:
-            await event.edit("Актуальная версия Sancho-Tool")
+        await event.edit("🔄 Обновление Sancho-Tool...")
+        
+        # Выполняем git pull
+        process = subprocess.run(["git", "pull"], 
+                               capture_output=True, 
+                               text=True,
+                               timeout=30)
+        
+        if process.returncode != 0:
+            error_msg = process.stderr if process.stderr else "Unknown error"
+            await event.edit(f"❌ Ошибка при обновлении:\n`{error_msg}`")
+            return
+            
+        output = process.stdout.strip()
+        
+        if "Already up to date" in output or "Уже обновлено" in output:
+            await event.edit("✅ Sancho-Tool актуален")
         else:
-            await event.edit("Обновление загружено. Перезапуск...")
+            await event.edit("✅ Обновление завершено! Перезапуск...")
+            # Даем время для отправки сообщения перед перезапуском
+            await asyncio.sleep(2)
             os.execl(sys.executable, sys.executable, *sys.argv)
+            
+    except subprocess.TimeoutExpired:
+        await event.edit("❌ Таймаут при обновлении (30 сек)")
     except Exception as e:
         logging.error(f"Error in update: {str(e)}")
-        await event.edit(f"Ошибка: {str(e)}")
+        await event.edit(f"❌ Ошибка: `{str(e)}`")
 
 @client.on(events.NewMessage(pattern=r"\.ping", outgoing=True))
 async def ping(event):
@@ -177,6 +195,7 @@ async def start_command(event):
 async def restart_command(event):
     try:
         await event.edit("Перезапуск Sancho-Tool...")
+        await asyncio.sleep(2)
         os.execl(sys.executable, sys.executable, *sys.argv)
     except Exception as e:
         logging.error(f"Error in restart_command: {str(e)}")
@@ -216,9 +235,12 @@ async def help_command(event):
             
             "**Сервисные команды:**\n"
             "• .sancho - __Информация о системе__\n"
+            "• .sk <ссылка> - __Скачать видео с Tiktok/Youtube__\n"
+            "• .swat - __Включить/Выключить язык сватера__\n"
             "• .dl help - __Управление автоудалением__\n"
             "•  trns help - __Помощь с переводчиком__ \n"
             "• .media help - __Помощь с медиа__\n"
+            "• .sq <time> <message> - __Запланировать отправку сообщения__\n"
             "• .who - __Информация о пользователе__\n"
             "• .gpt - __Запрос к AI__\n\n"
             
