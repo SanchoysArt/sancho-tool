@@ -250,7 +250,7 @@ async def me_command(event):
                        f"Фамилия: {me.last_name or 'Нет'}\n"
                        f"Username: @{me.username or 'Нет'}\n"
                        f"ID: {me.id}\n"
-                       f"Номер: {me.phone or 'Скрыт'}")
+                       f"Номер: {'Скрыт'}")
     except Exception as e:
         logging.error(f"Error in me_command: {str(e)}")
         await event.edit(f"Ошибка: {str(e)}")
@@ -282,6 +282,7 @@ async def help_command(event):
             "• .respond help - __Помощь с автоответчиком__\n"
             "• .trns help - __Помощь с переводчиком__ \n"
             "• .media help - __Помощь с медиа__\n"
+            "• .troll help - __Помощь с троль командами__\n"
             "• .sq <time> <message> - __Запланировать отправку сообщения__\n"
             "• .who - __Информация о пользователе__\n"
             "• .gpt - __Запрос к AI__\n\n"

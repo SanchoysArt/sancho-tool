@@ -32,7 +32,7 @@ def register(client):
             if len(answer) > 4000:
                 answer = answer[:4000] + "..."
                 
-            await event.edit(f"🤖 **GPT-4:**\n\n{answer}")
+            await event.edit(f"🤖 **GPT:**\n\n{answer}")
             
         except Exception as e:
             await event.edit(f"❌ Ошибка: {str(e)}")

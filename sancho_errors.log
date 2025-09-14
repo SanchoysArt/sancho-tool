@@ -3102,3 +3102,6 @@ Error loading module respond.py: register() missing 1 required positional argume
 Ошибка отправки help image: RPCError 400: TOPIC_CLOSED (caused by SendMediaRequest)
 Ошибка отправки help image: RPCError 400: TOPIC_CLOSED (caused by SendMediaRequest)
 Automatic reconnection failed 5 time(s)
+Error loading module trns.py: module 'httpcore' has no attribute 'SyncHTTPTransport'
+Error loading module trns.py: module 'httpcore' has no attribute 'SyncHTTPTransport'
+Error loading module trns.py: No module named 'googletrans'
