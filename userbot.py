@@ -290,7 +290,7 @@ async def help_command(event):
             "**Техническая информация:**\n"
             "__Версия: 1.0__\n"
             "__Платформа: Telethon__\n"
-            "__Разработчик: @CekcyaJlHblu_6po__\n"
+            "__Разработчик: @xranutel__\n"
             "__Статус: Production Ready__"
         )
 
@@ -328,7 +328,7 @@ async def sancho_info(event):
             f"**Platform:** Telethon\n"
             f"**Ping:** __{ping_time}ms__\n"
             f"**Status:** __{status}__\n\n"
-            f"**Developer** - @CekcyaJlHblu_6po\n\n"
+            f"**Developer** - @xranutel\n\n"
             "__Multifunctional extension__\n"
             "__for Telegram__"
         )

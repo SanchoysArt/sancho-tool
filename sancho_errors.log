@@ -3105,3 +3105,22 @@ Automatic reconnection failed 5 time(s)
 Error loading module trns.py: module 'httpcore' has no attribute 'SyncHTTPTransport'
 Error loading module trns.py: module 'httpcore' has no attribute 'SyncHTTPTransport'
 Error loading module trns.py: No module named 'googletrans'
+Unhandled exception on translation_help
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 574, in _dispatch_update
+    await callback(event)
+  File "/data/data/com.termux/files/home/sancho-tool/modules/trns.py", line 65, in translation_help
+    await event.edit(help_text)
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/tl/custom/message.py", line 888, in edit
+    return await self._client.edit_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/messages.py", line 1259, in edit_message
+    msg = self._get_response_message(request, await self(request), entity)
+                                              ^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/users.py", line 92, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.MessageAuthorRequiredError: Message author required (caused by EditMessageRequest)
