@@ -3126,3 +3126,4 @@ Traceback (most recent call last):
 telethon.errors.rpcerrorlist.MessageAuthorRequiredError: Message author required (caused by EditMessageRequest)
 Error loading module swat.py: Message.__init__() missing 1 required positional argument: 'peer_id'
 Error loading module troll.py: TelegramBaseClient.__init__() missing 2 required positional arguments: 'api_id' and 'api_hash'
+Error in get_api_credentials: 
