@@ -74,38 +74,78 @@ client = TelegramClient(
 
 def load_modules(client):
     global modules_load_errors
+    modules_loaded = 0
+    
     try:
         if not os.path.exists(MODULES_DIR):
             os.makedirs(MODULES_DIR)
-        
-        # Очищаем кэш модулей перед загрузкой
-        for module_name in list(sys.modules.keys()):
-            if module_name.startswith(MODULES_DIR + '.'):
-                del sys.modules[module_name]
-        
+            print(f"📁 Создана папка {MODULES_DIR}")
+            return modules_loaded
+
+        if MODULES_DIR not in sys.path:
+            sys.path.insert(0, MODULES_DIR)
+
         for filename in os.listdir(MODULES_DIR):
-            if filename.endswith(".py"):
+            if filename.endswith(".py") and filename != "__init__.py":
                 try:
-                    module_name = f"{MODULES_DIR}.{filename[:-3]}"
+                    module_name = filename[:-3]
+                    filepath = os.path.join(MODULES_DIR, filename)
                     
-                    # Если модуль уже загружен, перезагружаем его
-                    if module_name in sys.modules:
-                        module = importlib.reload(sys.modules[module_name])
-                    else:
-                        module = importlib.import_module(module_name)
+                    # Импортируем модуль
+                    spec = importlib.util.spec_from_file_location(module_name, filepath)
+                    module = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(module)
                     
-                    if hasattr(module, "register"):
+                    # Ищем функцию register
+                    if hasattr(module, 'register') and callable(module.register):
                         module.register(client)
-                        print(f"Загружен модуль: {filename}")
+                        modules_loaded += 1
+                        print(f"✅ Модуль загружен: {filename}")
+                    else:
+                        # Ищем классы с методом register (ТОЛЬКО для модулей которые должны загружаться)
+                        class_loaded = False
+                        for attr_name in dir(module):
+                            if not attr_name.startswith('_'):
+                                try:
+                                    attr = getattr(module, attr_name)
+                                    if (isinstance(attr, type) and 
+                                        hasattr(attr, 'register') and
+                                        'Module' in attr_name):  # Только классы с "Module" в названии
+                                        
+                                        try:
+                                            instance = attr(client)
+                                            instance.register()
+                                            modules_loaded += 1
+                                            class_loaded = True
+                                            print(f"✅ Модуль загружен: {filename}")
+                                            break
+                                        except TypeError:
+                                            try:
+                                                instance = attr()
+                                                instance.register()
+                                                modules_loaded += 1
+                                                class_loaded = True
+                                                print(f"✅ Модуль загружен: {filename}")
+                                                break
+                                            except:
+                                                pass
+                                except:
+                                    pass
+                        
+                        # Не показываем warning для служебных модулей
+                        if not class_loaded and not filename.startswith(('ping', 'time', 'test')):
+                            print(f"⚠️ Модуль {filename} не загружен (нет register)")
+                        
                 except Exception as e:
                     modules_load_errors = True
-                    logging.error(f"Error loading module {filename}: {str(e)}")
-                    print(f"Ошибка загрузки модуля {filename}: {e}")
+                    print(f"❌ Ошибка загрузки модуля {filename}: {e}")
                     
     except Exception as e:
         modules_load_errors = True
-        logging.error(f"Error in load_modules: {str(e)}")
-        print(f"Ошибка в load_modules: {e}")
+        print(f"❌ Ошибка в load_modules: {e}")
+    
+    print(f"📦 Всего загружено модулей: {modules_loaded}")
+    return modules_loaded
 
 @client.on(events.NewMessage(pattern=r"\.update", outgoing=True))
 async def update(event):
