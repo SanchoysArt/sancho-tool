@@ -3127,3 +3127,63 @@ telethon.errors.rpcerrorlist.MessageAuthorRequiredError: Message author required
 Error loading module swat.py: Message.__init__() missing 1 required positional argument: 'peer_id'
 Error loading module troll.py: TelegramBaseClient.__init__() missing 2 required positional arguments: 'api_id' and 'api_hash'
 Error in get_api_credentials: 
+Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)
+Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)
+Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)
+Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)
+Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)
+Unhandled exception on help_handler
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 574, in _dispatch_update
+    await callback(event)
+  File "/data/data/com.termux/files/home/sancho-tool/modules/helper.py", line 147, in help_handler
+    await helper_handler(event)
+  File "/data/data/com.termux/files/home/sancho-tool/modules/helper.py", line 121, in helper_handler
+    question = event.pattern_match.group(2).strip()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)
+Unhandled exception on help_handler
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 574, in _dispatch_update
+    await callback(event)
+  File "/data/data/com.termux/files/home/sancho-tool/modules/helper.py", line 147, in help_handler
+    await helper_handler(event)
+  File "/data/data/com.termux/files/home/sancho-tool/modules/helper.py", line 121, in helper_handler
+    question = event.pattern_match.group(2).strip()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)
+Unhandled exception on help_handler
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 574, in _dispatch_update
+    await callback(event)
+  File "/data/data/com.termux/files/home/sancho-tool/modules/helper.py", line 147, in help_handler
+    await helper_handler(event)
+  File "/data/data/com.termux/files/home/sancho-tool/modules/helper.py", line 121, in helper_handler
+    question = event.pattern_match.group(2).strip()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: no such group
+Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)
+Automatic reconnection failed 5 time(s)
+Fatal error handling updates (this is a bug in Telethon v1.41.2, please report it)
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 467, in _update_loop
+    _preprocess_updates = await self._preprocess_updates(processed, users, chats)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 478, in _preprocess_updates
+    await utils.maybe_async(self.session.process_entities(types.contacts.ResolvedPeer(None, users, chats)))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
+    c.executemany(
+sqlite3.OperationalError: attempt to write a readonly database
+Task exception was never retrieved
+future: <Task finished name='Task-13670' coro=<TelegramBaseClient._disconnect_coro() done, defined at /data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py:716> exception=OperationalError('attempt to write a readonly database')>
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py", line 746, in _disconnect_coro
+    await self._save_states_and_entities()
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py", line 701, in _save_states_and_entities
+    self.session.process_entities(
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
+    c.executemany(
+sqlite3.OperationalError: attempt to write a readonly database
