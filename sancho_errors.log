@@ -3187,3 +3187,80 @@ Traceback (most recent call last):
   File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
     c.executemany(
 sqlite3.OperationalError: attempt to write a readonly database
+Task was destroyed but it is pending!
+task: <Task pending name='Task-2' coro=<Connection._send_loop() running at /data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py:322> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Task was destroyed but it is pending!
+task: <Task pending name='Task-3' coro=<Connection._recv_loop() running at /data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py:341> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Task was destroyed but it is pending!
+task: <Task pending name='Task-4' coro=<MTProtoSender._send_loop() running at /data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py:464> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Task was destroyed but it is pending!
+task: <Task pending name='Task-5' coro=<MTProtoSender._recv_loop() running at /data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py:507> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+Unhandled exception from keepalive_handle after cancelling <class '_asyncio.Task'> (<Task finished name='Task-7' coro=<UpdateMethods._keepalive_loop() done, defined at /data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py:485> exception=OperationalError('database is locked')>)
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/helpers.py", line 176, in _cancel
+    await task
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 521, in _keepalive_loop
+    await self._save_states_and_entities()
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py", line 701, in _save_states_and_entities
+    self.session.process_entities(
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
+    c.executemany(
+sqlite3.OperationalError: database is locked
+Task exception was never retrieved
+future: <Task finished name='Task-742' coro=<TelegramBaseClient._disconnect_coro() done, defined at /data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py:716> exception=OperationalError('database is locked')>
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py", line 746, in _disconnect_coro
+    await self._save_states_and_entities()
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py", line 701, in _save_states_and_entities
+    self.session.process_entities(
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
+    c.executemany(
+sqlite3.OperationalError: database is locked
+Unhandled exception from keepalive_handle after cancelling <class '_asyncio.Task'> (<Task finished name='Task-7' coro=<UpdateMethods._keepalive_loop() done, defined at /data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py:485> exception=OperationalError('database is locked')>)
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/helpers.py", line 176, in _cancel
+    await task
+sqlite3.OperationalError: database is locked
+Unhandled exception from keepalive_handle after cancelling <class '_asyncio.Task'> (<Task finished name='Task-7' coro=<UpdateMethods._keepalive_loop() done, defined at /data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py:485> exception=OperationalError('database is locked')>)
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 38, in _run_until_disconnected
+    raise self._updates_error
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 354, in _update_loop
+    diff = await self(get_diff)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/users.py", line 93, in _call
+    await utils.maybe_async(self.session.process_entities(result))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
+    c.executemany(
+sqlite3.OperationalError: database is locked
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 96, in run_until_disconnected
+    return self.loop.run_until_complete(self._run_until_disconnected())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/updates.py", line 43, in _run_until_disconnected
+    await self.disconnect()
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py", line 746, in _disconnect_coro
+    await self._save_states_and_entities()
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/client/telegrambaseclient.py", line 701, in _save_states_and_entities
+    self.session.process_entities(
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/sessions/sqlite.py", line 301, in process_entities
+    c.executemany(
+sqlite3.OperationalError: database is locked
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/helpers.py", line 176, in _cancel
+    await task
+sqlite3.OperationalError: database is locked
+Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)

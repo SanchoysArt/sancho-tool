@@ -327,13 +327,7 @@ async def help_command(event):
             "• .sq <time> <message> - __Запланировать отправку сообщения__\n"
             "• .who - __Информация о пользователе__\n"
             "• .gpt - __Запрос к AI__\n"
-            "• .гс хелп - __Помощь с Voice Bot__\n\n"
-            
-            "**Техническая информация:**\n"
-            "__Версия: 1.0__\n"
-            "__Платформа: Telethon__\n"
-            "__Разработчик: @PavelDyrovMonk__\n"
-            "__Статус: Production Ready__"
+            "• .гс хелп - __Помощь с Voice Bot__"
         )
 
         image_path = "help.jpg"
