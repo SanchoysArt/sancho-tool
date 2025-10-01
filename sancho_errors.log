@@ -3264,3 +3264,193 @@ Traceback (most recent call last):
     await task
 sqlite3.OperationalError: database is locked
 Ошибка отправки help image: The caption is too long (caused by SendMediaRequest)
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
+Unhandled error while receiving data
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/mtprotosender.py", line 505, in _recv_loop
+    body = await self._connection.recv()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 301, in recv
+    raise err
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 332, in _recv_loop
+    data = await self._recv()
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/connection.py", line 369, in _recv
+    return await self._codec.read_packet(self._reader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/telethon/network/connection/tcpfull.py", line 25, in read_packet
+    packet_len_seq = await reader.readexactly(8)  # 4 and 4
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.12/asyncio/streams.py", line 750, in readexactly
+    raise exceptions.IncompleteReadError(incomplete, n)
+asyncio.exceptions.IncompleteReadError: 0 bytes read on a total of 8 expected bytes
